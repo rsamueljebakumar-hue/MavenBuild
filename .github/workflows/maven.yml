@@ -33,7 +33,7 @@ jobs:
       - name: Invoke Jenkins Deployment Job
         uses: appleboy/jenkins-action@master
         with:
-          url: 'http://13.200.222.12:8080/'
+          url: 'http://13.232.78.239:8080/'
           user: 'admin'
           token: ${{ secrets.JENKINS_TOKEN }}
           job: 'TomcatDeployment'
