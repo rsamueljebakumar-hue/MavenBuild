@@ -1,15 +1,7 @@
-Servlet example with corresponding Dockerfile
-
-Use Maven Build first to create war file in Target folder.
-
-  mvn clean package
-
-Artifact will be created in target folder.
-
-  docker build -t mavenbuild .
-
-Once this is done u will be see image using docker image
-
-Use below command to run the container
-
-  docker run -d -p 8080:8080 --name dockercontainer mavenbuild
+# If working locally: 
+git clone https://github.com/<YOUR-USERNAME>/Maven-Build.git 
+cd Maven-Build 
+echo "# Triggering CI/CD Pipeline" >> README.md 
+git add README.md 
+git commit -m "Trigger pipeline - initial deployment" 
+git push origin master
