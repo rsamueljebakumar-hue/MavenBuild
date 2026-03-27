@@ -13,27 +13,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 25
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '25'
+          java-version: '17'
           distribution: 'temurin'
           cache: maven
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: scp ssh pipelines
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      - name: Copy WAR to server via SCP
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
-          pass: ${{ secrets.PASSWORD }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          scp: |
-            ./target/*.war => /tmp/
-          last_ssh: |
-            ls -lart /tmp
+          source: "./target/*.war"
+          target: "/tmp/"
+          strip_components: 2
 
       - name: Invoke Jenkins Deployment Job
         uses: appleboy/jenkins-action@master
