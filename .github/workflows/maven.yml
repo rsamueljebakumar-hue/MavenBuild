@@ -32,7 +32,7 @@ jobs:
           port: ${{ secrets.PORT }}
           source: "./target/*.war"
           target: "/tmp/"
-          strip_components: 2
+          strip_components: 1
 
       - name: Invoke Jenkins Deployment Job
         uses: appleboy/jenkins-action@master
